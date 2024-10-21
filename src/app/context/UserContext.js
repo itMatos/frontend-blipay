@@ -5,7 +5,7 @@ export const User_Data = createContext();
 
 function UserContext({ children }) {
     const [userId, setUserId] = useState(null);
-    const [userName, setUserName] = useState(null);
+    const [userName, setUserName] = useState('Italo');
     const [userEmail, setUserEmail] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 

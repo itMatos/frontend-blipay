@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
-import HomePage from './home/HomePage';
+import LoginPage from './login/LoginPage';
 
 function App() {
-    return <HomePage />;
+    return <LoginPage />;
 }
 
 export default App;
