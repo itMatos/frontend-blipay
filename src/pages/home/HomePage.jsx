@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import { User_Data } from '@/app/context/UserContext';
+import { User_Data } from '@/context/UserContext';
+import PersonalLoanForm from './PersonalLoanForm';
 
 function HomePage() {
     const { userName } = useContext(User_Data);
@@ -39,6 +40,8 @@ function HomePage() {
             >
                 Olá, {userName}! Seja bem-vindo(a)!
             </Typography>
+
+            <PersonalLoanForm />
         </>
     );
 }

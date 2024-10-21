@@ -4,22 +4,16 @@ import React, { createContext, useState } from 'react';
 export const User_Data = createContext();
 
 function UserContext({ children }) {
-    const [userId, setUserId] = useState(null);
-    const [userName, setUserName] = useState('Italo');
-    const [userEmail, setUserEmail] = useState(null);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userName, setUserName] = useState('Blipay User');
+    const [userIncome, setUserIncome] = useState(2000);
 
     return (
         <User_Data.Provider
             value={{
-                userEmail,
-                setUserEmail,
                 userName,
                 setUserName,
-                userId,
-                setUserId,
-                isLoggedIn,
-                setIsLoggedIn,
+                userIncome,
+                setUserIncome,
             }}
         >
             {children}

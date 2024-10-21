@@ -1,4 +1,4 @@
-import UserContext from './../app/context/UserContext';
+import UserContext from '../context/UserContext';
 import React from 'react';
 
 function MyApp({ Component, pageProps }) {

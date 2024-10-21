@@ -1,6 +1,6 @@
 import React from 'react';
 import RegisterPage from './RegisterPage';
-import UserContext from './../../app/context/UserContext';
+import UserContext from '../../context/UserContext';
 
 function Register() {
     return (

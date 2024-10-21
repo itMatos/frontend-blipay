@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { TextField, Button, Box, Typography, Container } from '@mui/material';
+import {
+    TextField,
+    Button,
+    Box,
+    Typography,
+    Container,
+    FormControl,
+} from '@mui/material';
 import { useRouter } from 'next/router';
 
 const LoginPage = () => {
@@ -10,18 +17,21 @@ const LoginPage = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const usersListLocal = JSON.parse(localStorage.getItem('users'));
+        // const usersListLocal = JSON.parse(localStorage.getItem('users'));
 
-        if (usersListLocal !== null) {
-            const usersArray = [];
-            usersArray.push(usersListLocal);
+        // if (usersListLocal !== null) {
+        //     const usersArray = [];
+        //     usersArray.push(usersListLocal);
 
-            const userRegistred = usersArray.find(
-                (user) => user.email === email,
-            );
-            if (userRegistred) {
-                router.push('/home');
-            }
+        //     const userRegistred = usersArray.find(
+        //         (user) => user.email === email,
+        //     );
+        //     if (userRegistred) {
+        //         router.push('/home');
+        //     }
+        // }
+        if (email.length > 0) {
+            router.push('/home');
         }
     };
 
@@ -37,7 +47,7 @@ const LoginPage = () => {
                 <Typography variant="h4" gutterBottom>
                     Login
                 </Typography>
-                <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+                <FormControl onSubmit={handleSubmit} style={{ width: '100%' }}>
                     <TextField
                         label="Email"
                         type="email"
@@ -63,10 +73,11 @@ const LoginPage = () => {
                         fullWidth
                         style={{ marginTop: '16px' }}
                         sx={{ backgroundColor: '#591ca6', borderRadius: 5 }}
+                        onClick={handleSubmit}
                     >
                         Login
                     </Button>
-                </form>
+                </FormControl>
             </Box>
             <Box
                 mt={2}
