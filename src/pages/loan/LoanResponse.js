@@ -32,13 +32,10 @@ export default function LoanResponse() {
         let userRequests = [];
         if (localStorage.getItem('userRequests')) {
             userRequests = JSON.parse(localStorage.getItem('userRequests'));
-            console.log('userRequests', userRequests);
 
             const existingUserIndex = userRequests.findIndex(
                 (request) => request.email === userEmail,
             );
-
-            console.log('existingUserIndex', existingUserIndex);
 
             if (existingUserIndex !== -1) {
                 const existingRequest = userRequests[existingUserIndex];
@@ -77,18 +74,29 @@ export default function LoanResponse() {
         <>
             <Container maxWidth="sm">
                 {loading && (
-                    <Typography variant="h4" gutterBottom>
+                    <Typography
+                        variant="h4"
+                        gutterBottom
+                        data-testid="text-wait"
+                    >
                         Aguarde um momento! Estamos analisando sua solicitação!
                     </Typography>
                 )}
 
-                {loading && <CircularProgress color="secondary" />}
-
-                {status.status === 'APPROVED' && !loading && (
-                    <ApprovedRequest />
+                {loading && (
+                    <CircularProgress
+                        color="secondary"
+                        data-testid="circular-progress"
+                    />
                 )}
 
-                {status.status === 'DENIED' && !loading && <DeniedRequest />}
+                {status?.status === 'APPROVED' && !loading && (
+                    <ApprovedRequest data-testid="component-approved" />
+                )}
+
+                {status?.status === 'DENIED' && !loading && (
+                    <DeniedRequest data-testid="component-denied" />
+                )}
 
                 {!loading && (
                     <Box
@@ -102,6 +110,7 @@ export default function LoanResponse() {
                             onClick={() => router.push('/')}
                             variant="contained"
                             color="primary"
+                            data-testid="button-back-home"
                         >
                             Voltar para o início
                         </Button>

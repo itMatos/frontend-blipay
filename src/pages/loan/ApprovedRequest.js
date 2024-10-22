@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { Box, Container, Typography } from '@mui/material';
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { User_Data } from '@/context/UserContext';
+import { User_Data } from './../../context/UserContext';
 
 export default function ApprovedRequest() {
     const { userName } = useContext(User_Data);
@@ -22,7 +22,11 @@ export default function ApprovedRequest() {
                 </Box>
 
                 <Box>
-                    <Typography variant="h4" gutterBottom>
+                    <Typography
+                        variant="h4"
+                        gutterBottom
+                        data-testid="approved-response"
+                    >
                         Parabéns, {userName}, sua solicitação foi aprovada!
                     </Typography>
                 </Box>

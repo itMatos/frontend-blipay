@@ -40,7 +40,11 @@ export default function DeniedRequest() {
                 </Box>
 
                 <Box>
-                    <Typography variant="h4" gutterBottom>
+                    <Typography
+                        variant="h4"
+                        gutterBottom
+                        data-testid="denied-response"
+                    >
                         {userName} ({userEmail}), sua solicitação foi negada!
                     </Typography>
                 </Box>
