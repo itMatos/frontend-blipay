@@ -39,7 +39,6 @@ const PersonalLoanForm = () => {
             setUserName(nameParsed);
         }
 
-        // Validação da idade
         const parsedAge = parseInt(age, 10);
         if (parsedAge < 18 || parsedAge > 65 || isNaN(parsedAge)) {
             setAgeError(true);
@@ -48,7 +47,6 @@ const PersonalLoanForm = () => {
             setAgeError(false);
         }
 
-        // Validação da renda
         const parsedIncome = parseInt(income, 10);
         if (parsedIncome <= 0 || isNaN(parsedIncome)) {
             setIncomeError(true);

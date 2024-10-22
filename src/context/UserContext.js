@@ -5,7 +5,8 @@ export const User_Data = createContext();
 
 function UserContext({ children }) {
     const [userName, setUserName] = useState('Blipay User');
-    const [userIncome, setUserIncome] = useState(2000);
+    const [userEmail, setUserEmail] = useState('italo@gmail.com');
+    const [userIncome, setUserIncome] = useState(1000);
 
     return (
         <User_Data.Provider
@@ -14,6 +15,8 @@ function UserContext({ children }) {
                 setUserName,
                 userIncome,
                 setUserIncome,
+                userEmail,
+                setUserEmail,
             }}
         >
             {children}
