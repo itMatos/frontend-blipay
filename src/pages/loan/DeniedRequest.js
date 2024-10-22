@@ -1,8 +1,6 @@
 'use client';
 import React, { useContext, useEffect, useState } from 'react';
 import { Box, Container, Typography } from '@mui/material';
-
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { User_Data } from './../../context/UserContext';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
@@ -18,14 +16,11 @@ export default function DeniedRequest() {
             const userRequest = savedRequests.find(
                 (request) => request.email === userEmail,
             );
-            console.log('userRequest', userRequest);
             if (userRequest.status.status === 'DENIED') {
-                console.log('status', userRequest.status.status);
                 const currentDate = new Date();
                 const expiryDate = new Date(userRequest.expiry_date);
                 const diff = expiryDate - currentDate;
                 const timeRemainingInDays = Math.floor(diff / (1000 * 60));
-                console.log('timeRemainingInDays', timeRemainingInDays);
                 setTimeRemaining(timeRemainingInDays);
             }
         }
@@ -46,7 +41,7 @@ export default function DeniedRequest() {
 
                 <Box>
                     <Typography variant="h4" gutterBottom>
-                        {userName}, sua solicitação foi negada!
+                        {userName} ({userEmail}), sua solicitação foi negada!
                     </Typography>
                 </Box>
             </Box>

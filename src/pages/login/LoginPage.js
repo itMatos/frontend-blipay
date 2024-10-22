@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
     TextField,
     Button,
@@ -8,28 +8,40 @@ import {
     FormControl,
 } from '@mui/material';
 import { useRouter } from 'next/router';
+import { User_Data } from './../../context/UserContext';
 
 const LoginPage = () => {
     const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { setUserEmail } = useContext(User_Data);
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const currentDate = new Date();
 
-        // const usersListLocal = JSON.parse(localStorage.getItem('users'));
+        let userRequests = [];
 
-        // if (usersListLocal !== null) {
-        //     const usersArray = [];
-        //     usersArray.push(usersListLocal);
+        if (localStorage.getItem('userRequests')) {
+            userRequests = JSON.parse(localStorage.getItem('userRequests'));
 
-        //     const userRegistred = usersArray.find(
-        //         (user) => user.email === email,
-        //     );
-        //     if (userRegistred) {
-        //         router.push('/home');
-        //     }
-        // }
+            const existingUserIndex = userRequests.findIndex(
+                (request) => request.email === email,
+            );
+
+            if (existingUserIndex !== -1) {
+                const existingRequest = userRequests[existingUserIndex];
+                const existingExpiryDate = new Date(
+                    existingRequest.expiry_date,
+                );
+
+                if (existingExpiryDate > currentDate) {
+                    router.push('/loan');
+                    return;
+                }
+            }
+        }
+
         if (email.length > 0) {
             router.push('/home');
         }
@@ -54,7 +66,10 @@ const LoginPage = () => {
                         fullWidth
                         margin="normal"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => {
+                            setUserEmail(e.target.value);
+                            setEmail(e.target.value);
+                        }}
                         required
                     />
                     <TextField
@@ -78,24 +93,6 @@ const LoginPage = () => {
                         Login
                     </Button>
                 </FormControl>
-            </Box>
-            <Box
-                mt={2}
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="center"
-                minHeight="20vh"
-            >
-                <Button
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                    sx={{ backgroundColor: '#591ca6', borderRadius: 5 }}
-                    onClick={() => router.push('/register')}
-                >
-                    Ainda não tem conta? Cadastre-se aqui
-                </Button>
             </Box>
         </Container>
     );

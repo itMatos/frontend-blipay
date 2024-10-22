@@ -9,7 +9,7 @@ import {
     FormControl,
     FormHelperText,
 } from '@mui/material';
-import { User_Data } from './../../context/UserContext';
+import { User_Data } from '../../context/UserContext';
 import { useRouter } from 'next/router';
 
 const PersonalLoanForm = () => {
@@ -88,6 +88,7 @@ const PersonalLoanForm = () => {
                 <FormControl style={{ width: '100%' }}>
                     <TextField
                         id="name"
+                        data-testid="input-name"
                         label="Nome"
                         fullWidth
                         margin="normal"
@@ -99,13 +100,14 @@ const PersonalLoanForm = () => {
                         required
                     />
                     {nameError && (
-                        <FormHelperText error id="name-error">
+                        <FormHelperText error data-testid="name-error">
                             Digite seu nome completo.
                         </FormHelperText>
                     )}
 
                     <TextField
                         id="idade"
+                        data-testid="input-idade"
                         label="Idade"
                         type="number"
                         fullWidth
@@ -127,6 +129,7 @@ const PersonalLoanForm = () => {
                     <TextField
                         id="renda"
                         label="Renda mensal"
+                        data-testid="input-renda"
                         type="number"
                         fullWidth
                         margin="normal"
@@ -144,6 +147,7 @@ const PersonalLoanForm = () => {
                     )}
 
                     <TextField
+                        data-testid="input-cidade"
                         id="cidade"
                         label="Cidade"
                         fullWidth
@@ -160,6 +164,7 @@ const PersonalLoanForm = () => {
                         </FormHelperText>
                     )}
                     <Button
+                        data-testid="button-verify"
                         type="submit"
                         variant="contained"
                         color="primary"
